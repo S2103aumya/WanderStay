@@ -22,8 +22,8 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
-// const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust";
-const dbUrl=process.env.ATLAS_URL;
+const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust";
+// const dbUrl=process.env.ATLAS_URL;
 
 main()
     .then(()=>{
@@ -34,7 +34,7 @@ main()
     });
 
 async function main() {
-    await mongoose.connect(dbUrl);
+    await mongoose.connect(MONGO_URL);
 }
 
 app.set("view engine","ejs");
@@ -45,7 +45,8 @@ app.use(methodOverride("_method"));
 app.engine("ejs",ejsMate);
 
 const store = MongoStore.create({
-    mongoUrl: dbUrl,
+    // mongoUrl: dbUrl,
+    mongoUrl:MONGO_URL,
     crypto: {
         secret: "process.env.SECRET"
     },
@@ -103,6 +104,14 @@ app.use((err, req, res, next) => {
     let { statusCode = 500, message = "something went wrong!" } = err;
     res.status(statusCode).render("error.ejs",{message});
 });
-app.listen(port,(req,res)=>{
-    console.log(`Listening on port ${port}`);
-});
+// app.listen(port,(req,res)=>{
+//     console.log(`Listening on port ${port}`);
+// });
+
+try {
+    app.listen(port, () => {
+        console.log(`Server is running on port ${port}`);
+    });
+} catch (error) {
+    console.error("An error occurred while starting the server:", error);
+}

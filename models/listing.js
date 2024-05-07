@@ -8,10 +8,8 @@ const ListingSchema= new Schema({
     },
     description: String ,
     image:{
-        type: String,
-        default:"https://www.istockphoto.com/photo/sunset-landscape-gm870477626-145206999?utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fnature&utm_medium=affiliate&utm_source=unsplash&utm_term=nature%3A%3A%3A",
-        set:(v)=> v==="" ? "https://www.istockphoto.com/photo/sunset-landscape-gm870477626-145206999?utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fnature&utm_medium=affiliate&utm_source=unsplash&utm_term=nature%3A%3A%3A":
-        v,
+        filename: String,
+        url: String,
     },
     price: Number,
     location: String,
