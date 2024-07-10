@@ -72,7 +72,7 @@ const sessionOptions=({
 });
 
 app.get("/",(req,res)=>{
-    res.reddirect("/listings");
+     res.send("/listings");
 });
 
 app.use(session(sessionOptions));
@@ -115,4 +115,3 @@ try {
 } catch (error) {
     console.error("An error occurred while starting the server:", error);
 }
-
