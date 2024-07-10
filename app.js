@@ -23,7 +23,9 @@ const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
 // const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust";
+
 const dbUrl=process.env.ATLAS_URL;
+const { data: sampleListings } = require("./init/data.js");
 
 main()
     .then(()=>{
@@ -69,9 +71,9 @@ const sessionOptions=({
     }
 });
 
-// app.get("/",(req,res)=>{
-//     res.send("route working");
-// });
+app.get("/",(req,res)=>{
+    res.reddirect("/listings");
+});
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -90,8 +92,6 @@ app.use((req,res,next)=>{
     res.locals.curruser= req.user;
     next();
 });
-
-
 
 app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews",reviewRouter);
@@ -115,3 +115,4 @@ try {
 } catch (error) {
     console.error("An error occurred while starting the server:", error);
 }
+
