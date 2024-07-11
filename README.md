@@ -1,1 +1,1 @@
-https://majorproj-o4h7.onrender.com
+https://majorproj-o4h7.onrender.com/listings
