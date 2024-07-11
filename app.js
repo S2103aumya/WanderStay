@@ -27,6 +27,8 @@ const userRouter = require("./routes/user.js");
 const dbUrl=process.env.ATLAS_URL;
 const { data: sampleListings } = require("./init/data.js");
 
+mongoose.set('debug', true);
+
 main()
     .then(()=>{
         console.log("connection successful");
@@ -35,9 +37,11 @@ main()
         console.log(err);
     });
 
-async function main() {
-    await mongoose.connect(dbUrl);
-}
+    async function main() {
+        await mongoose.connect(dbUrl, {
+            tlsAllowInvalidCertificates: true, // If you are using self-signed certificates
+        });
+    }
 
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
