@@ -1,1 +1,1 @@
-https://WanderStay-ixwz.onrender.com
+https://wanderlust-ixwz.onrender.com
